@@ -1,0 +1,65 @@
+GET http://127.0.0.1:8080/health
+###
+
+
+POST http://127.0.0.1:8080/api/v1/am_alerts HTTP/1.1
+content-type: application/json
+
+{
+  "receiver": "webhook",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "Test",
+        "dc": "eu-west-1",
+        "instance": "localhost:9090",
+        "job": "prometheus24",
+        "severity": "critical"
+      },
+      "annotations": {
+        "description": "Some description1 \n other description",
+        "summary": "Some summary1",
+        "dashboard": "http://example.com"
+      },
+      "startsAt": "2018-08-03T09:52:26.739266876+02:00",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://example.com:9090/graph?g0.expr=go_memstats_alloc_bytes+%3E+0\u0026g0.tab=1",
+      "fingerprint": "123456"
+    },
+    {
+      "status": "resolved",
+      "labels": {
+        "alertname": "Test",
+        "dc": "eu-west-1",
+        "instance": "localhost:9090",
+        "job": "prometheus24",
+        "severity": "warning"
+      },
+      "annotations": {
+        "description": "Some description2 \n other description",
+        "summary": "Some summary2",
+        "value": "1"
+      },
+      "startsAt": "2018-08-03T09:52:26.739266876+02:00",
+      "endsAt": "2018-08-03T09:55:26.739266876+02:00",
+      "generatorURL": "http://example.com:9090/graph?g0.expr=go_memstats_alloc_bytes+%3E+0\u0026g0.tab=1",
+      "fingerprint": "782373"
+    }
+  ],
+  "groupLabels": {
+    "alertname": "Test",
+    "job": "prometheus24"
+  },
+  "commonLabels": {
+    "alertname": "Test",
+    "dc": "eu-west-1",
+    "instance": "localhost:9090",
+    "job": "prometheus24"
+  },
+  "commonAnnotations": {
+    "description": "some description"
+  },
+  "externalURL": "http://example.com:9093"
+}
